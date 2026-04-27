@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>@jayden_cloi — El casillero</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #f5f5f5;
+      color: #0a0a0a;
+      font-family: 'Nunito', sans-serif;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .top-tag {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: clamp(36px, 7vw, 72px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 12px;
+    }
+    .handle {
+      display: inline-block;
+      font-size: 15px;
+      font-weight: 800;
+      border: 2px solid #0a0a0a;
+      padding: 4px 12px;
+      margin-bottom: 16px;
+    }
+    .intro {
+      font-size: 16px;
+      font-weight: 600;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 2px solid #ddd;
+    }
+    .dias-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 24px;
+    }
+    .dias {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 48px;
+    }
+    .dia {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid #e0e0e0;
+      align-items: start;
+    }
+    .dia.highlight {
+      background: #0a0a0a;
+      color: #f5f5f5;
+      padding: 20px 16px;
+      border-bottom: none;
+      border-radius: 2px;
+    }
+    .dia-num {
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #bbb;
+      padding-top: 2px;
+    }
+    .dia.highlight .dia-num { color: #888; }
+    .dia-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .dia-desc {
+      font-size: 14px;
+      font-weight: 600;
+      color: #555;
+      line-height: 1.6;
+    }
+    .dia.highlight .dia-desc { color: #ccc; }
+    .dia-proof {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid #f5f5f5;
+      padding: 3px 8px;
+      color: #f5f5f5;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 2px solid #0a0a0a;
+      margin-bottom: 48px;
+    }
+    .stat {
+      padding: 24px 16px;
+      border-right: 1px solid #0a0a0a;
+      text-align: center;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-n {
+      font-size: 40px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+    .stat-l {
+      font-size: 11px;
+      font-weight: 700;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+    .final {
+      border: 2px solid #0a0a0a;
+      padding: 28px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .final-text { font-size: 20px; font-weight: 900; }
+    .final-sub { font-size: 13px; font-weight: 600; color: #888; margin-top: 4px; }
+    .final-badge {
+      background: #0a0a0a;
+      color: #f5f5f5;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      white-space: nowrap;
+    }
+    .caption-box {
+      border-left: 4px solid #0a0a0a;
+      padding: 16px 20px;
+      background: #eee;
+      margin-bottom: 48px;
+    }
+    .caption-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 8px;
+    }
+    .caption-text { font-size: 16px; font-weight: 700; line-height: 1.5; }
+    .caption-from { margin-top: 8px; font-size: 12px; font-weight: 700; color: #888; }
+    footer {
+      font-size: 12px;
+      font-weight: 700;
+      color: #bbb;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-top: 1px solid #ddd;
+      padding-top: 24px;
+    }
+    @media (max-width: 500px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border-right: none; }
+      .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid #0a0a0a; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-tag">Instagram · @jayden_cloi</div>
+  <h1>El casillero</h1>
+  <div class="handle">@jayden_cloi</div>
+  <p class="intro">
+    Un wey de la escuela metió comida a su casillero del gym y lo fue documentando en Instagram día por día. Empezó con snacks random y terminó con un pollo crudo entero adentro. Lo expulsaron.
+  </p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-n">11+</div>
+      <div class="stat-l">Días</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">1</div>
+      <div class="stat-l">Casillero</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">🐔</div>
+      <div class="stat-l">Pollo crudo</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">1</div>
+      <div class="stat-l">Expulsión</div>
+    </div>
+  </div>
+
+  <div class="dias-label">Lo que pasó</div>
+  <div class="dias">
+
+    <div class="dia">
+      <div class="dia-num">Día 1</div>
+      <div class="dia-content">
+        <div class="dia-title">Empieza la serie</div>
+        <div class="dia-desc">Mete comida al casillero del gym. Solo por ver qué pasa. Lo sube a Instagram.</div>
+      </div>
+    </div>
+
+    <div class="dia">
+      <div class="dia-num">Días 2–7</div>
+      <div class="dia-content">
+        <div class="dia-title">Más cosas, más seguidores</div>
+        <div class="dia-desc">Sigue metiendo comida y bebidas. Leche, snacks, lo que sea. El olor ya empieza. La gente sigue la cuenta para ver hasta dónde llega.</div>
+      </div>
+    </div>
+
+    <div class="dia">
+      <div class="dia-num">Días 8–10</div>
+      <div class="dia-content">
+        <div class="dia-title">El profe ya lo está viendo chistoso</div>
+        <div class="dia-desc">El gym ya huele mal. El profe ya andaba encima de él, pero Jayden siguió de todas formas.</div>
+      </div>
+    </div>
+
+    <div class="dia highlight">
+      <div class="dia-num">Día 11</div>
+      <div class="dia-content">
+        <div class="dia-title">Mete un pollo crudo entero 🐔</div>
+        <div class="dia-desc">Con todo y cartón de leche low fat aplastado de días anteriores. El caption: "Progress report day 11 — Sorry if I was quiet the teacher was literally on my today 😔"</div>
+        <span class="dia-proof">📸 Foto confirmada</span>
+      </div>
+    </div>
+
+    <div class="dia">
+      <div class="dia-num">Final</div>
+      <div class="dia-content">
+        <div class="dia-title">Lo descubren y lo expulsan</div>
+        <div class="dia-desc">La escuela lo encuentra. La serie termina. El casillero queda como zona de desastre.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="caption-box">
+    <div class="caption-tag">Caption real — Día 11</div>
+    <div class="caption-text">"Progress report day 11 🐓 Sorry if I was quiet the teacher was literally on my today 😔"</div>
+    <div class="caption-from">— @jayden_cloi en Instagram</div>
+  </div>
+
+  <div class="final">
+    <div>
+      <div class="final-text">Resultado final</div>
+      <div class="final-sub">Subió un pollo crudo a Instagram. La escuela lo encontró. Lo expulsaron.</div>
+    </div>
+    <div class="final-badge">Expulsado 💀</div>
+  </div>
+
+  <footer>@jayden_cloi · Fuente: Instagram + captura directa · 2026</footer>
+
+</body>
+</html>
